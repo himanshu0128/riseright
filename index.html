@@ -1,0 +1,192 @@
+<!-- Chosen Palette: Warm Neutrals with a Soft Blue Accent -->
+<!-- Application Structure Plan: The page is designed with a simple, vertical flow. A central hero section immediately captures the visitor's attention with a clear headline and a prominent 'Coming Soon' badge. This is followed by a brief 'Why RiseRight' section that highlights key benefits using a single-column layout with horizontal cards for easy scanning. A call-to-action section with an email form encourages user engagement. This structure is linear and intuitive, ideal for a single-page landing site. -->
+<!-- Visualization & Content Choices: The key content pieces (headline, benefits, form) are presented in a clean, hierarchical manner. We use Unicode icons (e.g., 📅, 🌙, ✨) instead of images or SVGs to keep the page lightweight and align with the minimalistic design. The form is a direct interaction point, and a small JavaScript snippet provides immediate user feedback upon submission, creating a simple but effective interactive experience. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RiseRight - Your Partner in Productive Sleep</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f3e9; /* Fallback for older browsers */
+            background-image: linear-gradient(135deg, #f7f3e9 0%, #ffffff 100%);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <div class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8">
+
+        <!-- Header -->
+        <header class="w-full max-w-4xl text-center py-8">
+            <h1 class="text-5xl sm:text-6xl font-extrabold text-[#3a506b] tracking-tight">RiseRight</h1>
+            <p class="mt-2 text-xl sm:text-2xl text-gray-500">Your Schedule. Your Sleep. Aligned.</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="w-full max-w-xl text-center">
+
+            <!-- Hero Section -->
+            <div class="bg-white p-6 sm:p-10 rounded-3xl shadow-xl flex flex-col items-center">
+                <span class="inline-block px-4 py-1.5 rounded-full text-sm font-semibold text-white bg-[#a3b2c1] transform -rotate-6 mb-8 shadow-md">
+                    Coming Soon
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
+                    Rise at the Right Time. Sleep Soundly Until Then.
+                </h2>
+                <p class="mt-4 text-lg sm:text-xl text-gray-600">
+                    RiseRight intelligently syncs your alarm with your calendar, so you only rise at the right time.
+                </p>
+            </div>
+
+            <!-- Feature Highlights Section -->
+            <div class="mt-12 w-full">
+                <p class="text-xl sm:text-2xl text-gray-700 font-semibold mb-8">
+                    Built to Get It Right.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-3xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 flex flex-col items-center text-center">
+                        <div class="p-4 rounded-full bg-gray-100 mb-4 flex-shrink-0">
+                            <span class="text-3xl">📅</span>
+                        </div>
+                        <h3 class="font-semibold text-gray-900 text-lg">Smart Calendar Sync</h3>
+                        <p class="mt-2 text-gray-600 text-sm">Your alarm automatically adjusts for last-minute changes, so you only rise for meetings that are still on.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-3xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 flex flex-col items-center text-center">
+                        <div class="p-4 rounded-full bg-gray-100 mb-4 flex-shrink-0">
+                            <span class="text-3xl">🌙</span>
+                        </div>
+                        <h3 class="font-semibold text-gray-900 text-lg">Undisturbed Sleep</h3>
+                        <p class="mt-2 text-gray-600 text-sm">Our app works overnight to monitor your schedule, giving you peace of mind and the sleep you deserve.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-3xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 flex flex-col items-center text-center">
+                        <div class="p-4 rounded-full bg-gray-100 mb-4 flex-shrink-0">
+                            <span class="text-3xl">✨</span>
+                        </div>
+                        <h3 class="font-semibold text-gray-900 text-lg">Zero Manual Work</h3>
+                        <p class="mt-2 text-gray-600 text-sm">RiseRight completely automates the process of setting your morning alarm based on your first meeting.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-3xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 flex flex-col items-center text-center">
+                        <div class="p-4 rounded-full bg-gray-100 mb-4 flex-shrink-0">
+                            <span class="text-3xl">😴</span>
+                        </div>
+                        <h3 class="font-semibold text-gray-900 text-lg">Bedtime Reminder</h3>
+                        <p class="mt-2 text-gray-600 text-sm">Based on your first meeting and sleep goals, we'll remind you to go to bed to ensure a full night's rest.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-3xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 flex flex-col items-center text-center">
+                        <div class="p-4 rounded-full bg-gray-100 mb-4 flex-shrink-0">
+                            <span class="text-3xl">⚡</span>
+                        </div>
+                        <h3 class="font-semibold text-gray-900 text-lg">Never Miss a Meeting</h3>
+                        <p class="mt-2 text-gray-600 text-sm">If a new, early-morning meeting is scheduled while you're sleeping, RiseRight will set an alarm to make sure you're on time.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-3xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 flex flex-col items-center text-center">
+                        <div class="p-4 rounded-full bg-gray-100 mb-4 flex-shrink-0">
+                            <span class="text-3xl">🧘</span>
+                        </div>
+                        <h3 class="font-semibold text-gray-900 text-lg">A Calmer Morning</h3>
+                        <p class="mt-2 text-gray-600 text-sm">Start your day on your own terms, without the stress of checking your phone or worrying about a surprise meeting.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Signup Section -->
+            <div class="mt-12">
+                <h3 class="text-2xl font-bold text-gray-900">Be the first to know!</h3>
+                <p class="mt-2 text-gray-600">Enter your email below to get notified when we launch.</p>
+                <form id="notifyForm" class="mt-6 flex flex-col sm:flex-row gap-4 items-center justify-center w-full">
+                    <input type="email" id="emailInput" placeholder="Your email address" required class="flex-grow w-full sm:w-auto px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#6b9d88] transition-shadow">
+                    <button type="submit" id="submitBtn" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#6b9d88] text-white font-bold hover:bg-[#5a8673] transition-colors shadow-lg">
+                        Notify Me
+                    </button>
+                </form>
+                <p id="message" class="mt-4 text-center font-semibold text-gray-600 hidden"></p>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-20 w-full max-w-4xl text-center text-sm text-gray-500">
+            &copy; 2024 RiseRight. All rights reserved.
+        </footer>
+    </div>
+
+    <!-- Firebase SDK Scripts -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        setLogLevel('debug');
+
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : null);
+        let app, db, auth;
+
+        // Ensure firebase config is present before initializing
+        if (firebaseConfig) {
+            app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            db = getFirestore(app);
+
+            // Handle authentication
+            onAuthStateChanged(auth, async (user) => {
+                if (!user) {
+                    try {
+                        const token = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+                        if (token) {
+                            await signInWithCustomToken(auth, token);
+                        } else {
+                            await signInAnonymously(auth);
+                        }
+                    } catch (error) {
+                        console.error("Firebase Auth Error:", error);
+                    }
+                }
+            });
+        }
+
+        const form = document.getElementById('notifyForm');
+        const message = document.getElementById('message');
+        const emailInput = document.getElementById('emailInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            submitBtn.textContent = 'Saving...';
+            submitBtn.disabled = true;
+
+            const email = emailInput.value;
+            const data = {
+                email: email,
+                timestamp: new Date()
+            };
+
+            try {
+                // Using a public collection path as this is for a shared purpose (marketing)
+                const subscribersCollectionRef = collection(db, `artifacts/${appId}/public/data/subscribers`);
+                await addDoc(subscribersCollectionRef, data);
+
+                message.textContent = 'Thanks! We will let you know when RiseRight is available.';
+                message.classList.remove('hidden', 'text-red-500');
+                message.classList.add('text-green-600');
+                form.classList.add('hidden'); // Hide the form after successful submission
+            } catch (e) {
+                console.error("Error adding document: ", e);
+                message.textContent = 'Something went wrong. Please try again later.';
+                message.classList.remove('hidden', 'text-green-600');
+                message.classList.add('text-red-500');
+                submitBtn.textContent = 'Notify Me';
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
