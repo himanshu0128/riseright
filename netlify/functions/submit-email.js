@@ -52,7 +52,7 @@ exports.handler = async (event, context) => {
 
     // Insert email into Supabase
     const { data, error } = await supabase
-      .from('riseright_subscribers')
+      .from('riseright_waitlist')
       .insert([
         { 
           email: cleanEmail,
