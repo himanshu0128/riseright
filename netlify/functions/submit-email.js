@@ -38,6 +38,14 @@ exports.handler = async (event, context) => {
   try {
     // Parse the request body
     const { email } = JSON.parse(event.body);
+    
+    // Log the request
+    console.log('📧 Email submission request:', {
+      email: email,
+      timestamp: new Date().toISOString(),
+      userAgent: event.headers['user-agent'],
+      ip: event.headers['x-forwarded-for'] || event.headers['client-ip']
+    });
 
     // Validate email
     if (!email || !email.includes('@')) {
@@ -80,7 +88,7 @@ exports.handler = async (event, context) => {
     // Send thank you email
     try {
       const emailResult = await resend.emails.send({
-        from: 'RiseRight <himanshu0128gupta@gmail.com>', // Update with your domain
+        from: 'RiseRight <onboarding@resend.dev>', // Use Resend's default domain
         to: cleanEmail,
         subject: 'Welcome to RiseRight! 🌙',
         html: `
@@ -182,13 +190,33 @@ exports.handler = async (event, context) => {
         `
       });
 
-      console.log('Thank you email sent:', emailResult);
+      if (emailResult.error) {
+        console.error('❌ Email sending failed:', {
+          error: emailResult.error,
+          email: cleanEmail,
+          timestamp: new Date().toISOString()
+        });
+      } else {
+        console.log('✅ Thank you email sent successfully:', {
+          email: cleanEmail,
+          messageId: emailResult.data?.id,
+          timestamp: new Date().toISOString()
+        });
+      }
     } catch (emailError) {
-      console.error('Email sending failed:', emailError);
+      console.error('❌ Email sending failed with exception:', {
+        error: emailError.message,
+        email: cleanEmail,
+        timestamp: new Date().toISOString()
+      });
       // Don't fail the whole request if email fails
     }
 
-    console.log('Email saved to database:', cleanEmail);
+    console.log('✅ Email saved to database:', {
+      email: cleanEmail,
+      timestamp: new Date().toISOString(),
+      success: true
+    });
 
     return {
       statusCode: 200,
