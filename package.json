@@ -1,0 +1,17 @@
+{
+  "name": "riseright-waitlist",
+  "version": "1.0.0",
+  "description": "RiseRight waitlist with Netlify and Supabase",
+  "main": "index.html",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.38.0",
+    "resend": "^2.1.0"
+  },
+  "scripts": {
+    "build": "echo 'No build step needed'",
+    "dev": "netlify dev"
+  },
+  "keywords": ["waitlist", "netlify", "supabase"],
+  "author": "RiseRight",
+  "license": "MIT"
+}

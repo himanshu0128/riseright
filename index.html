@@ -166,12 +166,12 @@
             };
 
             try {
-                const response = await fetch("https://himanshu0128.app.n8n.cloud/webhook/6ec73b59-c661-4d6f-a3b2-31bbacee1a06", {
+                const response = await fetch("/.netlify/functions/submit-email", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    // Send the email as JSON data, which n8n's Webhook node handles easily
+                    // Send the email as JSON data to our Netlify function
                     body: JSON.stringify(data),
                 });
 
