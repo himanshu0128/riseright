@@ -11,99 +11,137 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f7f3e9; /* Fallback for older browsers */
-            background-image: linear-gradient(135deg, #f7f3e9 0%, #ffffff 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7209b7 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 25s ease infinite;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(79, 172, 254, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(114, 9, 183, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(83, 52, 131, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 60% 60%, rgba(15, 52, 96, 0.2) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0);
+            background-size: 20px 20px;
+            z-index: -1;
+            animation: twinkle 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(1deg); }
+        }
+
+        .logo-animation {
+            animation: logoFloat 6s ease-in-out infinite;
+        }
+
+        /* Add a subtle overlay to ensure text readability */
+        .content-overlay {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
     </style>
 </head>
-<body class="text-gray-800">
-    <div class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8">
+<body class="text-white">
+    <div class="min-h-screen flex flex-col items-center justify-between p-6 sm:p-8">
 
-        <header class="w-full max-w-4xl text-center py-8">
-            <h1 class="text-5xl sm:text-6xl font-extrabold text-[#3a506b] tracking-tight">RiseRight</h1>
-            <p class="mt-2 text-xl sm:text-2xl text-gray-500">Your Schedule. Your Sleep. Aligned.</p>
+        <header class="w-full max-w-4xl text-center py-4 mb-3">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight drop-shadow-2xl">RiseRight</h1>
+            <p class="mt-1 text-base sm:text-lg text-gray-100 drop-shadow-xl">Your Schedule. Your Sleep. Aligned.</p>
         </header>
 
-        <main class="w-full max-w-xl text-center">
+        <main class="w-full max-w-4xl text-center flex-1 flex flex-col justify-center">
 
-            <div class="bg-white p-6 sm:p-10 rounded-3xl shadow-xl flex flex-col items-center">
-                <span class="inline-block px-4 py-1.5 rounded-full text-sm font-semibold text-white bg-[#a3b2c1] transform -rotate-6 mb-8 shadow-md">
-                    Coming Soon
-                </span>
-                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
-                    Rise at the Right Time. Sleep Soundly Until Then.
-                </h2>
-                <p class="mt-4 text-lg sm:text-xl text-gray-600">
-                    RiseRight intelligently syncs your alarm with your calendar, so you only rise at the right time.
-                </p>
+            <div class="max-w-lg mx-auto">
+                <div class="bg-white p-5 rounded-2xl shadow-xl flex flex-col items-center">
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold text-white bg-gradient-to-r from-[#4facfe] to-[#7209b7] transform -rotate-6 mb-4 shadow-md">
+                        Coming Soon
+                    </span>
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-900 leading-tight">
+                        <div>Rise at the Right Time.</div>
+                        <div>Sleep Soundly Until Then.</div>
+                    </h2>
+                    <p class="mt-2 text-sm text-gray-600">
+                        RiseRight intelligently syncs your alarm with your calendar, so you only rise at the right time.
+                    </p>
+                </div>
             </div>
 
-            <div class="mt-12 w-full">
-                <p class="text-xl sm:text-2xl text-gray-700 font-semibold mb-8">
+            <div class="mt-4 w-full max-w-4xl mx-auto">
+                <p class="text-base text-white font-semibold mb-4 drop-shadow-md">
                     Built to Get It Right.
                 </p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div class="bg-white p-6 rounded-3xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 flex flex-col items-center text-center">
-                        <div class="p-4 rounded-full bg-gray-100 mb-4 flex-shrink-0">
-                            <span class="text-3xl">📅</span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+                    <div class="bg-white p-5 rounded-2xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 flex flex-col items-center text-center h-56">
+                        <div class="p-3 rounded-full bg-gray-100 mb-3 flex-shrink-0">
+                            <span class="text-2xl">📅</span>
                         </div>
-                        <h3 class="font-semibold text-gray-900 text-lg">Smart Calendar Sync</h3>
-                        <p class="mt-2 text-gray-600 text-sm">Your alarm automatically adjusts for last-minute changes, so you only rise for meetings that are still on.</p>
+                        <h3 class="font-semibold text-gray-900 text-base mb-2">Smart Alarm Automation</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Your alarm automatically adjusts for schedule changes and new meetings overnight, so you only rise when needed and sleep peacefully without worry.</p>
                     </div>
-                    <div class="bg-white p-6 rounded-3xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 flex flex-col items-center text-center">
-                        <div class="p-4 rounded-full bg-gray-100 mb-4 flex-shrink-0">
-                            <span class="text-3xl">🌙</span>
+                    <div class="bg-white p-5 rounded-2xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 flex flex-col items-center text-center h-56">
+                        <div class="p-3 rounded-full bg-gray-100 mb-3 flex-shrink-0">
+                            <span class="text-2xl">😴</span>
                         </div>
-                        <h3 class="font-semibold text-gray-900 text-lg">Undisturbed Sleep</h3>
-                        <p class="mt-2 text-gray-600 text-sm">Our app works overnight to monitor your schedule, giving you peace of mind and the sleep you deserve.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-3xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 flex flex-col items-center text-center">
-                        <div class="p-4 rounded-full bg-gray-100 mb-4 flex-shrink-0">
-                            <span class="text-3xl">✨</span>
-                        </div>
-                        <h3 class="font-semibold text-gray-900 text-lg">Zero Manual Work</h3>
-                        <p class="mt-2 text-gray-600 text-sm">RiseRight completely automates the process of setting your morning alarm based on your first meeting.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-3xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 flex flex-col items-center text-center">
-                        <div class="p-4 rounded-full bg-gray-100 mb-4 flex-shrink-0">
-                            <span class="text-3xl">😴</span>
-                        </div>
-                        <h3 class="font-semibold text-gray-900 text-lg">Bedtime Reminder</h3>
-                        <p class="mt-2 text-gray-600 text-sm">Based on your first meeting and sleep goals, we'll remind you to go to bed to ensure a full night's rest.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-3xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 flex flex-col items-center text-center">
-                        <div class="p-4 rounded-full bg-gray-100 mb-4 flex-shrink-0">
-                            <span class="text-3xl">⚡</span>
-                        </div>
-                        <h3 class="font-semibold text-gray-900 text-lg">Never Miss a Meeting</h3>
-                        <p class="mt-2 text-gray-600 text-sm">If a new, early-morning meeting is scheduled while you're sleeping, RiseRight will set an alarm to make sure you're on time.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-3xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1 flex flex-col items-center text-center">
-                        <div class="p-4 rounded-full bg-gray-100 mb-4 flex-shrink-0">
-                            <span class="text-3xl">🧘</span>
-                        </div>
-                        <h3 class="font-semibold text-gray-900 text-lg">A Calmer Morning</h3>
-                        <p class="mt-2 text-gray-600 text-sm">Start your day on your own terms, without the stress of checking your phone or worrying about a surprise meeting.</p>
+                        <h3 class="font-semibold text-gray-900 text-base mb-2">Sleep Schedule Assistant</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">Get personalized bedtime reminders based on your first meeting and sleep goals to ensure you get the optimal rest you need.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-12">
-                <h3 class="text-2xl font-bold text-gray-900">Be the first to know!</h3>
-                <p class="mt-2 text-gray-600">Enter your email below to get notified when we launch.</p>
-                <form id="notifyForm" class="mt-6 flex flex-col sm:flex-row gap-4 items-center justify-center w-full">
-                    <input type="email" name="email" id="emailInput" placeholder="Your email address" required class="flex-grow w-full sm:w-auto px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#6b9d88] transition-shadow">
-                    <button type="submit" id="submitBtn" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#6b9d88] text-white font-bold hover:bg-[#5a8673] transition-colors shadow-lg">
-                        Notify Me
-                    </button>
-                </form>
-                <p id="message" class="mt-4 text-center font-semibold text-gray-600 hidden"></p>
-            </div>
-
         </main>
 
-        <footer class="mt-20 w-full max-w-4xl text-center text-sm text-gray-500">
-            &copy; 2024 RiseRight. All rights reserved.
+        <footer class="mt-12 w-full max-w-4xl text-center">
+            <div class="max-w-md mx-auto mb-6">
+                <div class="content-overlay p-4">
+                    <h3 class="text-lg font-bold text-white drop-shadow-md">Be the first to know!</h3>
+                    <p class="mt-1 text-sm text-gray-200 drop-shadow-sm">Enter your email below to get notified when we launch.</p>
+                    <form id="notifyForm" class="mt-4 flex flex-col sm:flex-row gap-2 items-center justify-center w-full">
+                        <input type="email" name="email" id="emailInput" placeholder="Your email address" required class="flex-grow w-full sm:w-auto px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#4facfe] transition-shadow text-sm">
+                        <button type="submit" id="submitBtn" class="w-full sm:w-auto px-4 py-2 rounded-lg bg-gradient-to-r from-[#4facfe] to-[#7209b7] text-white font-bold hover:from-[#3d8bfe] hover:to-[#5a0a9e] transition-all duration-300 shadow-lg text-sm">
+                            Notify Me
+                        </button>
+                    </form>
+                    <p id="message" class="mt-3 text-center font-semibold text-white drop-shadow-sm hidden text-sm"></p>
+                </div>
+            </div>
+            <p class="text-xs text-gray-300 drop-shadow-sm">
+                &copy; 2025 RiseRight. All rights reserved.
+            </p>
         </footer>
     </div>
 
