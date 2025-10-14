@@ -88,7 +88,7 @@ exports.handler = async (event, context) => {
       const emailResult = await resend.emails.send({
         from: "RiseRight <riseright@himanshugupta.dev>",
         to: cleanEmail,
-        subject: "Welcome to RiseRight! 🌙",
+        subject: "Welcome to RiseRight!",
         html: `
           <!DOCTYPE html>
           <html>
@@ -98,23 +98,21 @@ exports.handler = async (event, context) => {
             <title>Welcome to RiseRight</title>
             <style>
               body { 
-                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-                background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7209b7 100%);
+                font-family: Arial, sans-serif; 
+                background-color: #0f0f23;
                 margin: 0;
                 padding: 0;
-                min-height: 100vh;
               }
               .container { 
-                max-width: 600px; 
+                width: 600px; 
                 margin: 0 auto; 
                 padding: 40px 20px; 
               }
               .card { 
-                background: white; 
-                border-radius: 20px; 
+                background-color: white; 
+                border-radius: 10px; 
                 padding: 40px; 
                 text-align: center; 
-                box-shadow: 0 20px 40px rgba(0,0,0,0.1);
                 margin: 20px 0;
               }
               .logo { 
@@ -122,17 +120,16 @@ exports.handler = async (event, context) => {
                 height: 80px; 
                 margin: 0 auto 20px; 
                 border-radius: 50%;
-                background: linear-gradient(135deg, #4facfe 0%, #7209b7 100%);
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                background-color: #4facfe;
                 font-size: 32px;
+                text-align: center;
+                line-height: 80px;
               }
               h1 { 
                 color: #1a1a2e; 
                 font-size: 28px; 
                 margin-bottom: 20px; 
-                font-weight: 700;
+                font-weight: bold;
               }
               p { 
                 color: #666; 
@@ -141,18 +138,31 @@ exports.handler = async (event, context) => {
                 font-size: 16px;
               }
               .cta { 
-                background: linear-gradient(135deg, #4facfe 0%, #7209b7 100%); 
-                color: white; 
+                background-color: #4facfe; 
+                color: white !important; 
                 padding: 15px 30px; 
                 border-radius: 10px; 
-                text-decoration: none; 
+                text-decoration: none !important; 
                 display: inline-block; 
                 margin-top: 20px;
-                font-weight: 600;
-                transition: transform 0.2s ease;
+                font-weight: bold;
+                border: none;
               }
-              .cta:hover {
-                transform: translateY(-2px);
+              a.cta {
+                color: white !important;
+                text-decoration: none !important;
+              }
+              a.cta:link {
+                color: white !important;
+                text-decoration: none !important;
+              }
+              a.cta:visited {
+                color: white !important;
+                text-decoration: none !important;
+              }
+              a.cta:hover {
+                color: white !important;
+                text-decoration: none !important;
               }
               .footer {
                 text-align: center;
@@ -175,7 +185,7 @@ exports.handler = async (event, context) => {
                   <li>Early access when we launch</li>
                   <li>Exclusive beta testing opportunities</li>
                 </ul>
-                <a href="https://riseright.netlify.com" class="cta">Learn More About RiseRight</a>
+                <a href="https://riseright.netlify.app" class="cta">Learn More About RiseRight</a>
                 <div class="footer">
                   <p>You're receiving this because you signed up for RiseRight updates.</p>
                   <p>If you didn't sign up, you can safely ignore this email.</p>
