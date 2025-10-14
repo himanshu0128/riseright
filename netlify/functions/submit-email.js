@@ -3,7 +3,7 @@ const { Resend } = require('resend');
 
 // Initialize Supabase client
 const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_ANON_KEY;
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Initialize Resend client
@@ -38,14 +38,6 @@ exports.handler = async (event, context) => {
   try {
     // Parse the request body
     const { email } = JSON.parse(event.body);
-    
-    // Log the request
-    console.log('📧 Email submission request:', {
-      email: email,
-      timestamp: new Date().toISOString(),
-      userAgent: event.headers['user-agent'],
-      ip: event.headers['x-forwarded-for'] || event.headers['client-ip']
-    });
 
     // Validate email
     if (!email || !email.includes('@')) {
@@ -88,9 +80,9 @@ exports.handler = async (event, context) => {
     // Send thank you email
     try {
       const emailResult = await resend.emails.send({
-        from: 'RiseRight <onboarding@resend.dev>', // Use Resend's default domain
+        from: 'RiseRight <riseright@himanshugupta.dev>', // Update with your domain
         to: cleanEmail,
-        subject: 'Welcome to RiseRight! 🌙',
+        subject: 'Welcome to RiseRight!',
         html: `
           <!DOCTYPE html>
           <html>
@@ -101,7 +93,7 @@ exports.handler = async (event, context) => {
             <style>
               body { 
                 font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-                background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7209b7 100%);
+                background: #0f0f23;
                 margin: 0;
                 padding: 0;
                 min-height: 100vh;
@@ -112,35 +104,27 @@ exports.handler = async (event, context) => {
                 padding: 40px 20px; 
               }
               .card { 
-                background: white; 
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.1);
                 border-radius: 20px; 
                 padding: 40px; 
                 text-align: center; 
-                box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.5);
                 margin: 20px 0;
               }
-              .logo { 
-                width: 80px; 
-                height: 80px; 
-                margin: 0 auto 20px; 
-                border-radius: 50%;
-                background: linear-gradient(135deg, #4facfe 0%, #7209b7 100%);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 32px;
-              }
               h1 { 
-                color: #1a1a2e; 
+                color: #ffffff; 
                 font-size: 28px; 
                 margin-bottom: 20px; 
                 font-weight: 700;
+                text-shadow: 0 2px 8px rgba(0,0,0,0.8);
               }
               p { 
-                color: #666; 
+                color: #f1f5f9; 
                 line-height: 1.6; 
                 margin-bottom: 20px; 
                 font-size: 16px;
+                text-shadow: 0 1px 4px rgba(0,0,0,0.6);
               }
               .cta { 
                 background: linear-gradient(135deg, #4facfe 0%, #7209b7 100%); 
@@ -152,27 +136,29 @@ exports.handler = async (event, context) => {
                 margin-top: 20px;
                 font-weight: 600;
                 transition: transform 0.2s ease;
+                box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+                text-shadow: 0 1px 2px rgba(0,0,0,0.2);
               }
               .cta:hover {
                 transform: translateY(-2px);
               }
               .footer {
                 text-align: center;
-                color: #999;
+                color: #e2e8f0;
                 font-size: 14px;
                 margin-top: 30px;
+                text-shadow: 0 1px 4px rgba(0,0,0,0.6);
               }
             </style>
           </head>
           <body>
             <div class="container">
               <div class="card">
-                <div class="logo">🌙</div>
-                <h1>Welcome to RiseRight! 🌙</h1>
+                <h1>Welcome to RiseRight!</h1>
                 <p>Thank you for joining our waitlist! You're now part of an exclusive group that will be the first to experience the future of smart sleep.</p>
                 <p>We'll keep you updated on our progress and send you weekly insights about sleep optimization and our development journey.</p>
                 <p><strong>What to expect:</strong></p>
-                <ul style="text-align: left; color: #666; line-height: 1.8;">
+                <ul style="text-align: left; color: #f1f5f9; line-height: 1.8; text-shadow: 0 1px 4px rgba(0,0,0,0.6);">
                   <li>Weekly progress updates on RiseRight development</li>
                   <li>Sleep optimization tips and insights</li>
                   <li>Early access when we launch</li>
@@ -190,33 +176,13 @@ exports.handler = async (event, context) => {
         `
       });
 
-      if (emailResult.error) {
-        console.error('❌ Email sending failed:', {
-          error: emailResult.error,
-          email: cleanEmail,
-          timestamp: new Date().toISOString()
-        });
-      } else {
-        console.log('✅ Thank you email sent successfully:', {
-          email: cleanEmail,
-          messageId: emailResult.data?.id,
-          timestamp: new Date().toISOString()
-        });
-      }
+      console.log('Thank you email sent:', emailResult);
     } catch (emailError) {
-      console.error('❌ Email sending failed with exception:', {
-        error: emailError.message,
-        email: cleanEmail,
-        timestamp: new Date().toISOString()
-      });
+      console.error('Email sending failed:', emailError);
       // Don't fail the whole request if email fails
     }
 
-    console.log('✅ Email saved to database:', {
-      email: cleanEmail,
-      timestamp: new Date().toISOString(),
-      success: true
-    });
+    console.log('Email saved to database:', cleanEmail);
 
     return {
       statusCode: 200,
