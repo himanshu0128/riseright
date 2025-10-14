@@ -104,8 +104,8 @@ exports.handler = async (event, context) => {
                 padding: 40px 20px; 
               }
               .card { 
-                background: rgba(255, 255, 255, 0.05);
-                border: 1px solid rgba(255, 255, 255, 0.1);
+                background: #1a1a2e;
+                border: 1px solid #2d2d44;
                 border-radius: 20px; 
                 padding: 40px; 
                 text-align: center; 
